@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="card" *ngIf="!loading && order; else loadingTemplate">
+    <div class="order-header">
+      <button class="btn btn-primary" (click)="goBack()">← Back to Orders</button>
+      <h1>Order #{{ order.id }}</h1>
+      <span [class]="getStatusClass(order.status)">
+        {{ order.status | titlecase }}
+      </span>
+    </div>
+
+    <div class="order-info">
+      <div class="info-section">
+        <h3>Customer Information</h3>
+        <p><strong>Name:</strong> {{ order.customerName }}</p>
+        <p><strong>Email:</strong> {{ order.customerEmail }}</p>
+      </div>
+
+      <div class="info-section">
+        <h3>Order Details</h3>
+        <p><strong>Order Date:</strong> {{ order.orderDate | date:'full' }}</p>
+        <p><strong>Total Amount:</strong> ${{ order.totalAmount | number:'1.2-2' }}</p>
+        <p *ngIf="order.trackingNumber"><strong>Tracking Number:</strong> {{ order.trackingNumber }}</p>
+        <p *ngIf="order.estimatedDelivery"><strong>Estimated Delivery:</strong> {{ order.estimatedDelivery | date:'full' }}</p>
+      </div>
+    </div>
+
+    <div class="order-items">
+      <h3>Order Items</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of order.items">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.price | number:'1.2-2' }}</td>
+            <td>${{ (item.quantity * item.price) | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="shipping-info">
+      <h3>Shipping Address</h3>
+      <div class="address">
+        <p>{{ order.shippingAddress.street }}</p>
+        <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.state }} {{ order.shippingAddress.zipCode }}</p>
+        <p>{{ order.shippingAddress.country }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="card">
+      <p>Loading order details...</p>
+    </div>
+  </ng-template>
+</div>

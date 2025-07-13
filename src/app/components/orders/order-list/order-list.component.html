@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="card">
+    <h1>Order Dashboard</h1>
+    <p>Monitor and track your customer orders</p>
+  </div>
+
+  <div class="card" *ngIf="!loading; else loadingTemplate">
+    <h2>Recent Orders</h2>
+    
+    <table class="table" *ngIf="orders.length > 0; else noOrdersTemplate">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>#{{ order.id }}</td>
+          <td>
+            <div>
+              <strong>{{ order.customerName }}</strong><br>
+              <small>{{ order.customerEmail }}</small>
+            </div>
+          </td>
+          <td>{{ order.orderDate | date:'short' }}</td>
+          <td>
+            <span [class]="getStatusClass(order.status)">
+              {{ order.status | titlecase }}
+            </span>
+          </td>
+          <td>${{ order.totalAmount | number:'1.2-2' }}</td>
+          <td>
+            <button 
+              class="btn btn-primary" 
+              [routerLink]="['/orders', order.id]">
+              View Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #noOrdersTemplate>
+      <p>No orders found.</p>
+    </ng-template>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="card">
+      <p>Loading orders...</p>
+    </div>
+  </ng-template>
+</div>
