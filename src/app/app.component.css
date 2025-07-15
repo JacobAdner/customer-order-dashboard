@@ -1,1 +1,84 @@
-/* Global app styles can be added here if needed */
+.app-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 24px 0;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+}
+
+.logo {
+  padding: 0 24px 32px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.logo h2 {
+  margin: 0;
+  color: #111827;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-menu {
+  list-style: none;
+  padding: 24px 0 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  margin: 4px 0;
+}
+
+.nav-menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  color: #6b7280;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.nav-menu a:hover {
+  background: #f9fafb;
+  color: #374151;
+}
+
+.nav-menu a.active {
+  background: #eff6ff;
+  color: #2563eb;
+  border-right: 3px solid #2563eb;
+}
+
+.nav-menu i {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  opacity: 0.7;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 250px;
+  background: #f9fafb;
+  min-height: 100vh;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .main-content {
+    margin-left: 200px;
+    padding: 16px;
+  }
+}

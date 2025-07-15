@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+  <nav class="sidebar">
+    <div class="logo">
+      <h2>Dashboard</h2>
+    </div>
+    <ul class="nav-menu">
+      <li><a routerLink="/orders" routerLinkActive="active"><i class="icon-orders"></i>Orders</a></li>
+      <li><a routerLink="/metrics" routerLinkActive="active"><i class="icon-metrics"></i>Metrics</a></li>
+      <li><a routerLink="/production" routerLinkActive="active"><i class="icon-production"></i>Production</a></li>
+      <li><a routerLink="/login" routerLinkActive="active"><i class="icon-login"></i>Login</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

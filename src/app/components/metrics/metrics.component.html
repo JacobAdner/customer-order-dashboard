@@ -1,0 +1,89 @@
+<div class="metrics-container">
+  <div class="page-header">
+    <h1>Business Metrics</h1>
+    <p>Real-time insights into business performance and order analytics</p>
+  </div>
+
+  <div class="metrics-grid">
+    <!-- Key Performance Indicators -->
+    <div class="card kpi-card">
+      <h3>Total Orders</h3>
+      <div class="kpi-value">{{ totalOrders }}</div>
+      <div class="kpi-change positive">+12% from last month</div>
+    </div>
+
+    <div class="card kpi-card">
+      <h3>Revenue</h3>
+      <div class="kpi-value">${{ totalRevenue | number:'1.2-2' }}</div>
+      <div class="kpi-change positive">+8.5% from last month</div>
+    </div>
+
+    <div class="card kpi-card">
+      <h3>Avg Order Value</h3>
+      <div class="kpi-value">${{ avgOrderValue | number:'1.2-2' }}</div>
+      <div class="kpi-change negative">-2.1% from last month</div>
+    </div>
+
+    <div class="card kpi-card">
+      <h3>Fulfillment Rate</h3>
+      <div class="kpi-value">{{ fulfillmentRate }}%</div>
+      <div class="kpi-change positive">+1.2% from last month</div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <!-- Order Status Distribution -->
+    <div class="card chart-card">
+      <h3>Order Status Distribution</h3>
+      <div class="status-chart">
+        <div class="status-item" *ngFor="let status of orderStatusData">
+          <div class="status-label">
+            <span class="status-dot" [style.background-color]="status.color"></span>
+            {{ status.label }}
+          </div>
+          <div class="status-value">{{ status.count }}</div>
+          <div class="status-percentage">{{ status.percentage }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Trends -->
+    <div class="card chart-card">
+      <h3>Order Trends (Last 7 Days)</h3>
+      <div class="trend-chart">
+        <div class="trend-item" *ngFor="let day of weeklyTrends">
+          <div class="trend-day">{{ day.day }}</div>
+          <div class="trend-bar">
+            <div class="trend-fill" [style.height]="day.percentage + '%'"></div>
+          </div>
+          <div class="trend-value">{{ day.orders }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Detailed Analytics -->
+  <div class="analytics-section">
+    <div class="card">
+      <h3>Performance Analytics</h3>
+      <div class="analytics-grid">
+        <div class="analytics-item">
+          <span class="label">Processing Time</span>
+          <span class="value">2.4 days avg</span>
+        </div>
+        <div class="analytics-item">
+          <span class="label">Customer Satisfaction</span>
+          <span class="value">4.8/5.0</span>
+        </div>
+        <div class="analytics-item">
+          <span class="label">Return Rate</span>
+          <span class="value">2.1%</span>
+        </div>
+        <div class="analytics-item">
+          <span class="label">Repeat Customers</span>
+          <span class="value">68%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
